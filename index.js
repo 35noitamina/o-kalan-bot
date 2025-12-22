@@ -1,3 +1,5 @@
+const fs = require('node:fs');
+const path = require('node:path');
 import { Client, GatewayIntentBits, Events } from "discord.js";
 import express from "express";
 var client = new Client({
