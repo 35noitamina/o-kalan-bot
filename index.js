@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 import { Client, GatewayIntentBits, Events } from "discord.js";
 import express from "express";
+const { default: aisatu } = await import("./commands/aisatu.js");
 var client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
 });
@@ -17,4 +18,17 @@ app.get("/", (req, res) => {
 var port = 3000;
 app.listen(port, () => {
   console.log(`Good morning!!`);
+});
+client.on(Events.InteractionCreate, async interaction => {
+    if (!interaction.isChatInputCommand()) return;
+    if (interaction.commandName == aisatu.data.name) {
+        try {
+            await aisatu.execute(interaction);
+        } catch (error) {
+            console.error(error);
+            await interaction.reply({content: 'コマンド実行時にエラーになりました。',ephemeral:true});
+        }
+    } else {
+        await interaction.reply(`不明なコマンドが実行されました。`)
+    }
 });
