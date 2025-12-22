@@ -1,5 +1,5 @@
-const fs = require('node:fs');
-const path = require('node:path');
+import fs from "fs";
+import path from "path";
 import { Client, GatewayIntentBits, Events } from "discord.js";
 import express from "express";
 const { default: aisatu } = await import("./commands/aisatu.js");
