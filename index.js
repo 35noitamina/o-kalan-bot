@@ -2,8 +2,8 @@ import fs from "fs";
 import path from "path";
 import { Client, GatewayIntentBits, Events } from "discord.js";
 import express from "express";
-const { default: aisatu } = await import("./commands/aisatu.js");
-const { default: invite } = await import("./commands/invite.js");
+import * as aisatu from "./commands/aisatu.js";
+import * as invite from "./commands/invite.js";
 import UpdateCommands from "./update-commands.js";
 UpdateCommands();
 var client = new Client({
