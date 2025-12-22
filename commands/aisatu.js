@@ -1,10 +1,9 @@
-import { SlashCommandBuilder } from 'discord.js';
+const { SlashCommandBuilder } = await import("discord.js");
 export default {
-  data: new SlashCommandBuilder()
-    .setName('invite')
-    .setDescription('招待リンクを作成します。'),
-  async execute(interaction) {
-    const invite = await interaction.channel.createInvite();
-    await interaction.reply(invite.url);
-  }
+  data: new SlashCommandBuilder()
+    .setName("aisatu")
+    .setDescription("あいさつに反応してbotが返事します。"),
+  execute: async function (interaction) {
+    await interaction.reply("こんにちは～☆");
+  },
 };
