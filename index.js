@@ -3,6 +3,7 @@ import path from "path";
 import { Client, GatewayIntentBits, Events } from "discord.js";
 import express from "express";
 const { default: aisatu } = await import("./commands/aisatu.js");
+const { default: invite } = await import("./commands/invite.js");
 import UpdateCommands from "./update-commands.js";
 UpdateCommands();
 var client = new Client({
@@ -31,7 +32,14 @@ client.on(Events.InteractionCreate, async interaction => {
             console.error(error);
             await interaction.reply({content: 'コマンド実行時にエラーになりました。',ephemeral:true});
         }
-    } else {
+    }else if (interaction.commandName == invite.data.name) {
+        try {
+            await invite.execute(interaction);
+        } catch (error) {
+            console.error(error);
+            await interaction.reply({content: 'コマンド実行時にエラーになりました。',ephemeral:true});
+        }
+    }else {
         await interaction.reply(`不明なコマンドが実行されました。`)
     }
 });
