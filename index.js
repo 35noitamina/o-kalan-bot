@@ -23,12 +23,18 @@ var port = 3000;
 app.listen(port, () => {
   console.log(`Good morning!!`);
 });
-client.on(Events.InteractionCreate, async interaction => {
-    if (!interaction.isChatInputCommand()){
-      if (["ぬるぽ","ヌルポ","ﾇﾙﾎﾟ",].includes(interaction.content)){
-        await interaction.reply({content: 'ｶﾞｯ',ephemeral:true});
-      }
+client.on(Events.MessageCreate, async message => {
+    // ボット自身のメッセージには反応しない（無限ループ防止）
+    if (message.author.bot) return;
+
+    // 配列に含まれているかチェック
+    if (["ぬるぽ", "ヌルポ", "ﾇﾙﾎﾟ"].includes(message.content)) {
+        await message.reply('ｶﾞｯ');
     }
+});
+
+client.on(Events.InteractionCreate, async interaction => {
+    if (!interaction.isChatInputCommand()) return
     if (interaction.commandName == aisatu.data.name) {
         try {
             await aisatu.execute(interaction);
