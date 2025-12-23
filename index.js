@@ -24,7 +24,10 @@ app.listen(port, () => {
   console.log(`Good morning!!`);
 });
 client.on(Events.InteractionCreate, async interaction => {
-    if (!interaction.isChatInputCommand()) return;
+    if (!interaction.isChatInputCommand()){
+      if (["ぬるぽ","ヌルポ","ﾇﾙﾎﾟ",].includes(interaction.content){
+        await interaction.reply({content: 'ｶﾞｯ',ephemeral:true});
+      }
     if (interaction.commandName == aisatu.data.name) {
         try {
             await aisatu.execute(interaction);
