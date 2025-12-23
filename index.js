@@ -29,9 +29,8 @@ client.on(Events.MessageCreate, async message => {
         await message.reply('ｶﾞｯ');
     }//react
     if (keywords.some(["ない"] => message.content.includes(key))) return;
-    if (keywords.some(["ktkr","できた","出来た","でけた","やったー"] => message.content.includes(key))){
-        await message.react('👏');
-    }
+    if (keywords.some(["ktkr","できた","出来た","でけた","やったー"] => message.content.includes(key))) await message.react('👏');
+  if (keywords.some(["ズモモ","ｽﾞﾓﾓ"] => message.content.includes(key))) await message.reply('ズモモモ');
 
 client.on(Events.InteractionCreate, async interaction => {
     if (!interaction.isChatInputCommand()) return
