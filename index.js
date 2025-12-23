@@ -24,14 +24,14 @@ app.listen(port, () => {
   console.log(`Good morning!!`);
 });
 client.on(Events.MessageCreate, async message => {
-    // ボット自身のメッセージには反応しない（無限ループ防止）
-    if (message.author.bot) return;
-
-    // 配列に含まれているかチェック
+    if (message.author.bot) return;//react
     if (["ぬるぽ", "ヌルポ", "ﾇﾙﾎﾟ"].includes(message.content)) {
         await message.reply('ｶﾞｯ');
+    }//react
+    if (keywords.some(["ない"] => message.content.includes(key))) return;
+    if (keywords.some(["ktkr","できた","出来た","でけた","やったー"] => message.content.includes(key))){
+        await message.react('👏');
     }
-});
 
 client.on(Events.InteractionCreate, async interaction => {
     if (!interaction.isChatInputCommand()) return
