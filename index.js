@@ -7,7 +7,7 @@ import invite from "./commands/invite.js";
 import UpdateCommands from "./update-commands.js";
 UpdateCommands();
 var client = new Client({
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent,],
 });
 client.login(process.env.TOKEN);
 
