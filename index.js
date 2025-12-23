@@ -34,7 +34,7 @@ client.on(Events.MessageCreate, async message => {
     if (keywords.some(kekr => message.content.includes(key))) await message.react('👏');
     var zumo=["ズモモ","ｽﾞﾓﾓ"]
     if (keywords.some(zomo => message.content.includes(key))) await message.reply('ズモモモ');
-}
+})
 client.on(Events.InteractionCreate, async interaction => {
     if (!interaction.isChatInputCommand()) return
     if (interaction.commandName == aisatu.data.name) {
